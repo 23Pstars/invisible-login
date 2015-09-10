@@ -20,7 +20,9 @@
  *      MA 02110-1301, USA.
  */
 
-?>
+$mantra = 'anu';  ?>
+
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
 	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
@@ -32,28 +34,24 @@
 </head>
 
 <body>
-	<?php
-		$mantra="zaf"; // ganti dengan password yang anda inginkan :)
-		if (isset($_POST['mantra']) && $_POST['mantra']==$mantra){
-			echo '
-				<h1>Selamat datang mas admin :)</h1>
-				<br/>
-				then u can put any code here,,, :)
-				<br/>
-				by Zaf!
-			';
-		} else {
-			echo '
-				<h1>Not Found</h1>
-				<p>The requested URL /index.php was not found on this server.</p>
-				<hr>
-				<address>Apache/2.2.14 (Ubuntu) Server at localhost Port 80</address>
-				<form action="" method="post">
-				<input type="text" name="mantra" style="border-style: none;" />
-				</form>
-			';
-		}
-	?>
+
+<?php if( isset( $_REQUEST[ 'mantra' ] ) && $_REQUEST[ 'mantra' ] == $mantra ) : ?>
+
+    <h1>Selamat datang mas admin :)</h1>
+    <br/>
+    then u can put any code or redirect to another admin/login pages
+
+<?php else : ?>
+
+    <h1>Not Found</h1>
+    <p>The requested URL /<?php echo basename( __FILE__ ); ?> was not found on this server.</p>
+    <hr>
+    <address><?php echo $_SERVER[ 'SERVER_SOFTWARE' ]; ?> Server at <?php echo $_SERVER[ 'SERVER_NAME' ]; ?> Port <?php echo $_SERVER[ 'SERVER_PORT' ]; ?></address>
+
+    <form><input type="text" name="mantra" style="border-style: none;" /></form>
+
+<?php endif; ?>
+
 </body>
 
 </html>
